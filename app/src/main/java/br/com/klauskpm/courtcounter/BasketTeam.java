@@ -10,20 +10,24 @@ public class BasketTeam {
 
     TextView teamScore;
 
+    final int THREE_POINTS_THROW = 3;
+    final int TWO_POINTS_THROW = 2;
+    final int FREE_THROW = 1;
+
     public BasketTeam(View v) {
         teamScore = (TextView) v;
     }
 
     public void threePointsThrow() {
-        addPoints(3);
+        addPoints(THREE_POINTS_THROW);
     }
 
     public void twoPointsThrow() {
-        addPoints(2);
+        addPoints(TWO_POINTS_THROW);
     }
 
     public void freeThrow() {
-        addPoints(1);
+        addPoints(FREE_THROW);
     }
 
     private void addPoints(Integer points) {
