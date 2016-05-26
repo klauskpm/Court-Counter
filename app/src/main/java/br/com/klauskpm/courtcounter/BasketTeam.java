@@ -1,6 +1,7 @@
 package br.com.klauskpm.courtcounter;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -9,24 +10,56 @@ import android.widget.TextView;
 public class BasketTeam {
 
     TextView teamScore;
+    Button threePointsThrow;
+    Button twoPointsThrow;
+    Button freeThrow;
 
     final int THREE_POINTS_THROW = 3;
     final int TWO_POINTS_THROW = 2;
     final int FREE_THROW = 1;
 
-    public BasketTeam(View v) {
-        teamScore = (TextView) v;
+    public BasketTeam(
+            View teamScoreTextView,
+            View threePointsThrowButton,
+            View twoPointsThrowButton,
+            View freeThrowButton) {
+
+        teamScore = (TextView) teamScoreTextView;
+        threePointsThrow = (Button) threePointsThrowButton;
+        twoPointsThrow = (Button) twoPointsThrowButton;
+        freeThrow = (Button) freeThrowButton;
+
+        threePointsThrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addThreePointsThrow();
+            }
+        });
+
+        twoPointsThrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addTwoPointsThrow();
+            }
+        });
+
+        freeThrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFreeThrow();
+            }
+        });
     }
 
-    public void threePointsThrow() {
+    public void addThreePointsThrow() {
         addPoints(THREE_POINTS_THROW);
     }
 
-    public void twoPointsThrow() {
+    public void addTwoPointsThrow() {
         addPoints(TWO_POINTS_THROW);
     }
 
-    public void freeThrow() {
+    public void addFreeThrow() {
         addPoints(FREE_THROW);
     }
 
