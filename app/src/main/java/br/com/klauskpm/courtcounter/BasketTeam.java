@@ -9,10 +9,7 @@ import android.widget.TextView;
  */
 public class BasketTeam {
 
-    TextView teamScore;
-    Button threePointsThrow;
-    Button twoPointsThrow;
-    Button freeThrow;
+    private TextView teamScore;
 
     final int THREE_POINTS_THROW = 3;
     final int TWO_POINTS_THROW = 2;
@@ -24,11 +21,15 @@ public class BasketTeam {
             View twoPointsThrowButton,
             View freeThrowButton) {
 
+        // Declaração de variáveis do sistema
         teamScore = (TextView) teamScoreTextView;
-        threePointsThrow = (Button) threePointsThrowButton;
-        twoPointsThrow = (Button) twoPointsThrowButton;
-        freeThrow = (Button) freeThrowButton;
+        Button threePointsThrow = (Button) threePointsThrowButton;
+        Button twoPointsThrow = (Button) twoPointsThrowButton;
+        Button freeThrow = (Button) freeThrowButton;
 
+        /**
+         * Settando o clickListener
+         */
         threePointsThrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,6 +37,9 @@ public class BasketTeam {
             }
         });
 
+        /**
+         * Settando o clickListener
+         */
         twoPointsThrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +47,9 @@ public class BasketTeam {
             }
         });
 
+        /**
+         * Settando o clickListener
+         */
         freeThrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,24 +58,41 @@ public class BasketTeam {
         });
     }
 
+    /**
+     * Adiciona THREE_POINTS_THROW no score
+     */
     public void addThreePointsThrow() {
         addPoints(THREE_POINTS_THROW);
     }
 
+    /**
+     * Adiciona TWO_POINTS_THROW no score
+     */
     public void addTwoPointsThrow() {
         addPoints(TWO_POINTS_THROW);
     }
 
+    /**
+     * Adiciona FREE_THOW no score
+     */
     public void addFreeThrow() {
         addPoints(FREE_THROW);
     }
 
+    /**
+     * Adiciona os pontos(points) declarados no score(teamScore)
+     *
+     * @param points
+     */
     private void addPoints(Integer points) {
         Integer previousPoints = Integer.parseInt((String) teamScore.getText());
 
         teamScore.setText("" + (previousPoints + points));
     }
 
+    /**
+     * Reseta o score(teamScore) para 0
+     */
     public void reset() {
         teamScore.setText("" + 0);
     }
