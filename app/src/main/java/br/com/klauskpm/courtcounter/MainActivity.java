@@ -17,21 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.team_b__score__text_view);
+        BasketTeamA = new BasketTeam(this);
 
-        BasketTeamA = new BasketTeam(
-            findViewById(R.id.team_a__score__text_view),
-            findViewById(R.id.team_a__three_points__button),
-            findViewById(R.id.team_a__two_points__button),
-            findViewById(R.id.team_a__free_throw__button)
-        );
-
-        BasketTeamB = new BasketTeam(
-            findViewById(R.id.team_b__score__text_view),
-            findViewById(R.id.team_b__three_points__button),
-            findViewById(R.id.team_b__two_points__button),
-            findViewById(R.id.team_b__free_throw__button)
-        );
+        BasketTeamB = new BasketTeam(this);
     }
 
     public void reset(View v) {

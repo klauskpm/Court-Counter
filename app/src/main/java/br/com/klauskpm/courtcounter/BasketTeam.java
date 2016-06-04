@@ -1,7 +1,10 @@
 package br.com.klauskpm.courtcounter;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 /**
@@ -9,28 +12,28 @@ import android.widget.TextView;
  */
 public class BasketTeam {
 
-    private TextView teamScore;
+    private TextView teamScoreTextView;
 
     final int THREE_POINTS_THROW = 3;
     final int TWO_POINTS_THROW = 2;
     final int FREE_THROW = 1;
 
-    public BasketTeam(
-            View teamScoreTextView,
-            View threePointsThrowButton,
-            View twoPointsThrowButton,
-            View freeThrowButton) {
+    public BasketTeam(AppCompatActivity activity) {
+        LinearLayout court = (LinearLayout) activity.findViewById(R.id.court);
 
-        // Declaração de variáveis do sistema
-        teamScore = (TextView) teamScoreTextView;
-        Button threePointsThrow = (Button) threePointsThrowButton;
-        Button twoPointsThrow = (Button) twoPointsThrowButton;
-        Button freeThrow = (Button) freeThrowButton;
+        LinearLayout template = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.basket_team_template, null);
+        LayoutParams layoutParams = new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, 1f);
+        template.setLayoutParams(layoutParams);
+
+        teamScoreTextView = (TextView) template.findViewById(R.id.score__text_view);
+        Button threePointsButton = (Button) template.findViewById(R.id.three_points__button);
+        Button twoPointsButton = (Button) template.findViewById(R.id.two_points__button);
+        Button freeThrowButton = (Button) template.findViewById(R.id.free_throw__button);
 
         /**
          * Settando o clickListener
          */
-        threePointsThrow.setOnClickListener(new View.OnClickListener() {
+        threePointsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addThreePointsThrow();
@@ -40,7 +43,7 @@ public class BasketTeam {
         /**
          * Settando o clickListener
          */
-        twoPointsThrow.setOnClickListener(new View.OnClickListener() {
+        twoPointsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addTwoPointsThrow();
@@ -50,12 +53,14 @@ public class BasketTeam {
         /**
          * Settando o clickListener
          */
-        freeThrow.setOnClickListener(new View.OnClickListener() {
+        freeThrowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addFreeThrow();
             }
         });
+
+        court.addView(template);
     }
 
     /**
@@ -85,15 +90,15 @@ public class BasketTeam {
      * @param points
      */
     private void addPoints(Integer points) {
-        Integer previousPoints = Integer.parseInt((String) teamScore.getText());
+        Integer previousPoints = Integer.parseInt((String) teamScoreTextView.getText());
 
-        teamScore.setText("" + (previousPoints + points));
+        teamScoreTextView.setText("" + (previousPoints + points));
     }
 
     /**
      * Reseta o score(teamScore) para 0
      */
     public void reset() {
-        teamScore.setText("" + 0);
+        teamScoreTextView.setText("" + 0);
     }
 }
