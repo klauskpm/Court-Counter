@@ -6,22 +6,40 @@
     tools:context="br.com.klauskpm.courtcounter.MainActivity">
 
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/court"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/court">
+            android:orientation="horizontal">
 
-            <!--<View-->
-                <!--android:layout_width="1dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginTop="16dp"-->
-                <!--android:background="@android:color/darker_gray" />-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:id="@+id/team_a">
+            </LinearLayout>
+
+            <View android:layout_height="match_parent"
+                android:layout_width="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="16dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:id="@+id/team_b">
+            </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
     <Button

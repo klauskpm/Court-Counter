@@ -12,24 +12,29 @@ import android.widget.TextView;
  */
 public class BasketTeam {
 
+    public LinearLayout template;
+
     private TextView teamScoreTextView;
 
     final int THREE_POINTS_THROW = 3;
     final int TWO_POINTS_THROW = 2;
     final int FREE_THROW = 1;
 
-    public BasketTeam(AppCompatActivity activity) {
-        LinearLayout court = (LinearLayout) activity.findViewById(R.id.court);
+    /**
+     *
+     * @param activity
+     * @param teamName
+     */
+    public BasketTeam(AppCompatActivity activity, String teamName) {
+        template = getTemplate(activity);
 
-        LinearLayout template = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.basket_team_template, null);
-        LayoutParams layoutParams = new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, 1f);
-        template.setLayoutParams(layoutParams);
-
+        TextView teamNameTextView = (TextView) template.findViewById(R.id.team_name_text_view);
         teamScoreTextView = (TextView) template.findViewById(R.id.score__text_view);
         Button threePointsButton = (Button) template.findViewById(R.id.three_points__button);
         Button twoPointsButton = (Button) template.findViewById(R.id.two_points__button);
         Button freeThrowButton = (Button) template.findViewById(R.id.free_throw__button);
 
+        teamNameTextView.setText(teamName);
         /**
          * Settando o clickListener
          */
@@ -59,8 +64,21 @@ public class BasketTeam {
                 addFreeThrow();
             }
         });
+    }
 
-        court.addView(template);
+    private LinearLayout getTemplate(AppCompatActivity activity) {
+        LinearLayout template = (LinearLayout) activity.getLayoutInflater().inflate(
+                R.layout.basket_team_template,
+                null
+        );
+
+        LayoutParams layoutParams = new LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT
+        );
+        template.setLayoutParams(layoutParams);
+
+        return template;
     }
 
     /**
